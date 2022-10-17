@@ -75,11 +75,26 @@ head(pol) # it shows the first 6-7 lines
 pairs(pol,col="blue",cex=1.5)
 
 ## 2 using the name of the columns
-pairs(~cadmium + copper + lead + zinc ,data=meuse)  # the symbol tilde ~ (Alt 126) is important in modelling
+pairs(~cadmium + copper + lead + zinc ,data=meuse)  # the symbol tilde ~ (Alt 126) is important in modelling when you use +
 pairs(~cadmium + copper + lead + zinc ,data=meuse, col="yellow")
 
 # to change the character of the points use pch
 pairs(~cadmium + copper + lead + zinc ,data=meuse, col="yellow", pch=19)
+
+# there is a function in sp which is called coordinates which is useful to show spacial variability
+coordinates(meuse)=~x+y  # you create a spacial plot
+# now the meuse is a spacial dataset  
+
+# to plot every single variable in the space we use the function:  spplot (dataset, "variable", main="describing text")
+spplot(meuse, "zinc", main="Concentration of zinc")
+
+# to make a spacial plot of several variables
+spplot(meuse, c("copper", "zinc")) # this is an array (group of objects), that needs to be named with a c
+
+# to change the size of the dots in a spacial graph use the function bubble
+bubble(meuse, "zinc", main="Concentration of zinc") # the size increases according to the size of the variable 
+
+
 
 
 
