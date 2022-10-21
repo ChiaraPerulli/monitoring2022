@@ -47,14 +47,29 @@ ggplot(d, aes(x=virus, y=death)) + geom_point(size=3, col="blue", pch=17) + geom
 setwd("C:/lab/") # explain to R the path of the folder (look in the properties of the folder)
 
 # use the function read.table(file name, header=FALSE, sep="") to use the csv
-##There is a part of the table which is just naming the columns, therefore header is FALSE. 
+##There is a part of the table which is just naming the columns (header). 
 ## sep means separator, that is the symbol that separates the cokumns
 read.table("covid_agg.csv")
 
 # we assign the function to an object
 covid <- read.table("covid_agg.csv")
 
+# to see just a few lines use the function head
+head(covid)
 
+# We should explain to R that in our table cat, country, cases, lat and lon are headers and not variables. Therefore we use the argument header=TRUE.
+read.table("covid_agg.csv", header=TRUE)  # Write TRUE or T 
+
+covid<- read.table("covid_agg.csv", header=TRUE)
+
+# to see some statistics
+summary(covid)
+
+# create the plot with x is the longitude and y is the latitude and explainthe geometry you want to use 
+ggplot(covid, aes(x=lon, y=lat)) + geom_point(col="red", size=4)
+
+# you can change the size of the points relating them with the number of cases
+ggplot(covid, aes(x=lon, y=lat, size=cases)) + geom_point(col="red", pch=11)
 
 
 
