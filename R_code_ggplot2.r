@@ -38,3 +38,33 @@ ggplot(d, aes(x=virus, y=death)) + geom_line(size=2, col="red") + geom_point(siz
 
 # there is also the function geom_polygon() to use areas
 ggplot(d, aes(x=virus, y=death)) + geom_point(size=3, col="blue", pch=17) + geom_polygon()
+
+
+################################21.10.2022############################################
+# create a folder called lab and save the csv covid_agg inside it
+
+# to connect the csv with R, use the function setwd (set working directory). It is used to explain which working directory R has to use.
+setwd("C:/lab/") # explain to R the path of the folder (look in the properties of the folder)
+
+# use the function read.table(file name, header=FALSE, sep="") to use the csv
+##There is a part of the table which is just naming the columns, therefore header is FALSE. 
+## sep means separator, that is the symbol that separates the cokumns
+read.table("covid_agg.csv")
+
+# we assign the function to an object
+covid <- read.table("covid_agg.csv")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
