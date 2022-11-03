@@ -32,3 +32,10 @@ attach(biomes_types) # state that we are using that table
 
 # use the function ordiellipse to display groups in ordination diagrams
 ordiellipse(multivar, type, col=c("black","red","green","blue"), kind = "ehull", lwd=3)  # type is telling R that we want to use different objects # kind stands for the type of ellipse # lwd is the line width
+
+
+
+
+
+
+
