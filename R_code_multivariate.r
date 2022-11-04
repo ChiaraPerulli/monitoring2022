@@ -31,7 +31,44 @@ plot(multivar)
 attach(biomes_types) # state that we are using that table
 
 # use the function ordiellipse to display groups in ordination diagrams
-ordiellipse(multivar, type, col=c("black","red","green","blue"), kind = "ehull", lwd=3)  # type is telling R that we want to use different objects # kind stands for the type of ellipse # lwd is the line width
+ordiellipse(multivar, type, col= c("black","red","green","blue"), kind= "ehull", lwd= 3)  
+## "type" is telling R that we want that specicif column in the biomes_types  
+## "kind" stands for the type of ellipse 
+### "lwd" is the line width
+
+# use the function ordispider with the same arguments (adding the labels) to connect the points of a certain biome
+ordispider(multivar, type, col= c("black","red","green","blue"), kind= "ehull", lwd= 3, label= T)  
+
+# we can save our graph as a pdf out of R
+pdf("myfirstoutput.pdf")
+## repeat all the functions that you want to include in the pdf
+plot(multivar)
+ordiellipse(multivar, type, col= c("black","red","green","blue"), kind= "ehull", lwd= 3)  
+ordispider(multivar, type, col= c("black","red","green","blue"), kind= "ehull", lwd= 3, label= T)  
+## close the pdf
+dev.off()
+
+### you should find the pdf in the lab folder! :)
+
+# Exercise: export a pdf with only the multivar plot
+pdf("mysecondoutput.pdf")
+plot(multivar)
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
