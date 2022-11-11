@@ -22,6 +22,5 @@ cl <- colorRampPalette(c('black','grey','light grey'))(100) # 100 is the amount 
 # replot with the new colour palette
 plot(p224r63_2011, col=cl)
 
-# 
 
 
