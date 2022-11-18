@@ -90,7 +90,36 @@ par(mfrow=c(2,1))
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin") # linear stretching
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist") # histogram stretching # you can see clearer, both vegetation and  bare soil
 
+
+# COMPARING 1998 AND 2011 DATA
+
+library(raster)
+
+# set the working directory
+setwd("C:/lab/")
+
+# the brick function is used to create a rasterbrick object
+p224r63_1988 <- brick("p224r63_1988_masked.grd")
+
+# let's brick also the 2011 data
+p224r63_2011 <- brick("p224r63_2011_masked.grd") 
+
+# let's plot RGB
+plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="lin")
+
+# use red as nearinfrared
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="lin")
+
+# use green 
+plotRGB(p224r63_1988, r=3, g=4, b=2, stretch="lin")
+
+##### Exercise: make a multiframe with 2 rows and 1 column plotting the 1988 and 2011 images (put the nearinfrared in the blue band)
+par(mfrow=c(2,1))
+plotRGB(p224r63_2011, r=4, g=2, b=4, stretch="lin") 
+plotRGB(p224r63_1988, r=4, g=2, b=4, stretch="lin")
+
 # 
+
 
 
 
