@@ -85,11 +85,12 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="lin")  
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="lin")  
 
+# let's see an histogram stretching (we are stretching the values a lot) on one band
+par(mfrow=c(2,1))
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin") # linear stretching
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist") # histogram stretching # you can see clearer, both vegetation and  bare soil
 
-
-
-
-
+# 
 
 
 
