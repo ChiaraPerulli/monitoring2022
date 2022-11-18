@@ -118,10 +118,33 @@ par(mfrow=c(2,1))
 plotRGB(p224r63_2011, r=4, g=2, b=4, stretch="lin") 
 plotRGB(p224r63_1988, r=4, g=2, b=4, stretch="lin")
 
-# 
+# multitemporal analysis
+# let's calculate the difference between 1988 and 2011 for 1 band (see how the pixels change from 1988 to 2011)
+difnir <- p224r63_1988[[4]] - p224r63_2011 [[4]]    # difnir= difference in the infrared
 
+# plot the difference with a chosen legend
+cl <- colorRampPalette(c('orange','yellow','black'))(100) # orange is for small difference and black is for big difference
+plot(difnir, col=cl)
 
+###### DVI = difference vegetation index   
 
+# NIR - RED must result in a high value if there is a plant (High NIR - low RED). When the plant is suffering, the NIR decreases and the RED increases (less photosynthesis occurs), therefore the result will be low.
 
+# Calculate the recent DVI (2011)
+dvi2011 <- p224r63_2011 [[4]] - p224r63_2011 [[3]]
+
+# plot it
+plot(dvi2011)
+
+# Calculate the past DVI (1988)
+dvi1988 <- p224r63_1988[[4]] - p224r63_1988[[3]]
+
+# plot it
+plot(dvi1988)
+
+# When the div decreases a lot (for example, from 1 to 0,2) it means that a tree has been cut
+difdvi <- dvi1988 - dvi2011
+cl <- colorRampPalette(c('blue','white','red'))(100)
+plot(difdvi, col=cl)
 
 
