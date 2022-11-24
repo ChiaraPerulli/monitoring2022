@@ -33,10 +33,56 @@ plot(dvi2006, col=cl)
 
 # The yellow parts have low amount of vegetation. There is a huge amount of vegetation loss. 
 
+#### Threshold for trees
+library(RStoolbox) # for classification
 
+# unsupervised classification (the software is doing the threshold
+d1c <- unsuperClass(l1992, nClasses=2)   # d1c = first classified image
 
+# let's plot the d1c map
+plot(d1c$map)
 
+# 1992
+# class 1: forest - 0.8977855
+# class 2: human impact  - 0.1022145
 
+# use dev.off to cancel the previous image organisation
+
+# frequencies (to know the amount of pixels that have changed with time)
+freq(d1c$map)
+ value  count
+[1,]     1 306407
+[2,]     2  34885
+
+# let's calculate the proportion of each class
+# forest:
+f1992 <- 306407 / (306407 + 34885)
+[1] 0.8977855
+# human impact:
+h1992 <- 34885 / (306407 + 34885)
+[1] 0.1022145
+
+# let's do the classification for 2006
+d2c <- unsuperClass(l2006, nClasses=2)
+plot(d2c$map)
+freq(d2c$map)
+     value  count
+[1,]     1 164613
+[2,]     2 178113
+
+# 2006 
+# class 1: human impact  - 0.480305   # the classes have changed
+# class 2: forest - 0.519695  
+
+# forest:
+f2006 <- 178113 / (178113 + 164613)
+[1] 0.519695
+# human impact: 
+h2006 <- 164613 / (178113 + 164613)
+[1] 0.480305
+
+# let's create a table with our own data
+data.frame
 
 
 
