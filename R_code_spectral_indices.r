@@ -125,6 +125,48 @@ p1 + p2
 # let's put the first plot on top of the other
 p1 / p2
 
+###### ggplot examples
+# rgb
+library(raster)
+library(RStoolbox)
+
+setwd("C:/lab/")
+
+l1992 <- brick("defor1.png")
+
+plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
+
+ggRGB(l1992, 1, 2, 3)  # same result, but more simple! 
+
+# you can plot also single layers
+dvi1992= l1992[[1]] - l1992[[2]]
+plot(dvi1992)
+
+ggplot() + geom_raster(dvi1992, mapping= aes(x=x, y=y, fill=layer))      # fill = name of the layer you want to use
+
+# install.packages("viridis")
+library(viridis)
+
+ggplot() + geom_raster(dvi1992, mapping= aes(x=x, y=y, fill=layer)) + scale_fill_viridis(option="magma") 
+
+# the function scale_fill_viridis gives lots of options (viridis, magma, heat, plasma, mako, ... )
+# with this function, everyone can see the different colours!
+
+# Exercise: with the patchwork package, put 2 graphs one besides the other with two different viridis color ramps
+library(patchwork)
+g1 <- ggplot() + geom_raster(dvi1992, mapping= aes(x=x, y=y, fill=layer)) + scale_fill_viridis(option="mako") 
+g2 <- ggplot() + geom_raster(dvi1992, mapping= aes(x=x, y=y, fill=layer)) + scale_fill_viridis(option="plasma") 
+
+g1 + g2
+
+
+
+
+
+
+
+
+
 
 
 
