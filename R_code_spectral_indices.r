@@ -84,6 +84,49 @@ h2006 <- 164613 / (178113 + 164613)
 # let's create a table with our own data
 data.frame
 
+# 1992 vs 2006
+
+# 1992
+# forest : 0.8977855
+# human impact  : 0.1022145
+
+# 2006
+# forest : 0.519695
+# human impact : 0.480305  
+
+landcover <- c("Forest", "Humans")
+percent_1992 <- c(89.78, 10.22)   # use the point as the decimal separator
+percent_2006 <- c(51.97, 48.03)
+
+# let's build a table with these data (with the function data.frame)
+perc <- data.frame(landcover, percent_1992, percent_2006)
+
+# lets' plot them for the final histogram!
+# first of all, recall the library ggplot2
+library(ggplot2)
+
+# ggplot(name of the object, aes(x=x axis, y=y axis, color=color)) + geom_bar(stat="identity", fill="white")
+# aes = aesthetics = explain how you want to build the histogram 
+# histogram = geom_bar
+ggplot(perc, aes(x=landcover, y=percent_1992, color=landcover)) + geom_bar(stat="identity", fill="orchid")
+
+ggplot(perc, aes(x=landcover, y=percent_2006, color=landcover)) + geom_bar(stat="identity", fill="orchid")
+
+# use the package patchwork to compose graphics without using the multiframe (it's more simple)
+install.packages("patchwork")
+library(patchwork)
+
+# assign a ggplot to an object and then sum the objects
+p1 <- ggplot(perc, aes(x=landcover, y=percent_1992, color=landcover)) + geom_bar(stat="identity", fill="orchid")
+p2 <- ggplot(perc, aes(x=landcover, y=percent_2006, color=landcover)) + geom_bar(stat="identity", fill="orchid")
+
+p1 + p2 
+
+# let's put the first plot on top of the other
+p1 / p2
+
+
+
 
 
 
