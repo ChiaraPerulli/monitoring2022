@@ -53,20 +53,26 @@ cl <- colorRampPalette(c('blue','orange','red','yellow')) (100)
 plot(preds, col=cl)
 preds
 
-# plot predictors and occurrences
-plot(preds$elevation, col=cl)
+# MODEL
+# Create sdm Data object
+datasdm <- sdmData(train=species, predictors=preds)   # train data = points  # 
+datasdm
+
+# 4 dimensional model - 4 features
+# ~ means = 
+m1 <- sdm(Occurrence ~ elevation + precipitation + temperature + vegetation, data=datasdm, methods = "glm")  # glm is the simplest method = generalized linear model 
+install.packages("parallel")
+
+# Make the raster output layer
+p1 <- predict(m1, newdata=preds)   # Predict the spread of the species based on the model
+
+# Plot the output
+plot(p1, col=cl)
 points(species[species$Occurrence == 1,], pch=16)
 
-plot(preds$temperature, col=cl)
-points(species[species$Occurrence == 1,], pch=16)
-
-plot(preds$precipitation, col=cl)
-points(species[species$Occurrence == 1,], pch=16)
-
-plot(preds$vegetation, col=cl)
-points(species[species$Occurrence == 1,], pch=16)
-
-
+# Add to the stack
+s1 <- stack(preds,p1)
+plot(s1, col=cl)
 
 
 
