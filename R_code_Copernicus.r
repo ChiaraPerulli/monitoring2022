@@ -3,24 +3,25 @@
 # Copernicus site:
 # https://land.copernicus.vgt.vito.be/PDF/portal/Application.html
 
+# You will need this package:
 # install.packages("ncdf4")
 
-# recall these libraries
-library(ncdf4)   # reading nc. files
-library(raster)   # usual package
-library(ggplot2)   # beautiful plots
-library(RStoolbox)   # RS functions
+# Recall these libraries
+library(ncdf4)      # reading nc. files
+library(raster)     # usual package
+library(ggplot2)    # beautiful plots
+library(RStoolbox)  # RS functions
 library(viridis)    # legends - colour gamut
-library(patchwork)   # multiframe ggplot
+library(patchwork)  # multiframe ggplot
 
-# to import the data use the following functions:
+# To import the data use the following functions:
 # brick function (more layers)
 # raster function (for just one layer per time)
 
 # First of all, set the working directory
 setwd("C:/lab/")
 
-# import the image in R
+# Import the image in R
 snow <- raster("c_gls_SCE_202012210000_NHEMI_VIIRS_V1.0.1.nc")
 
 # Snow.Cover.Extent is the name of the layer
@@ -41,7 +42,7 @@ ext <- c(-20, 70, 20, 75)    # min x, max x, min y, max y -> coordinates that in
 # Use the crop function to crop data
 snow.europe <- crop(snow, ext)
 
-# plot the image
+# Plot the image
 ggplot() + geom_raster (snow.europe, mapping=aes(x=x, y=y, fill=Snow.Cover.Extent)) + scale_fill_viridis(option="inferno") 
 
 # Exercise: plot the two sets with the patchwork package
