@@ -3,6 +3,7 @@
 # install.packages("sdm")
 # install.packages("rgdal")
 
+# Recall these packages
 library(sdm)
 library(rgdal)
 library(raster)
@@ -13,7 +14,7 @@ file <- system.file("external/species.shp", package="sdm")
 # Use the shapefile function to read a shapefile  (raster package)
 species <- shapefile(file)
 
-# plot the species
+# Plot the species
 plot(species)   
 species
 
@@ -23,7 +24,7 @@ species$Occurrence
 
 # Subset only the points meaning "presence"
 presences <- species[species$Occurrence == 1,]
-presences$Occurrence                   # You will find just 1
+presences$Occurrence       # You will find just 1
 
 # Exercise: select the absences
 species$Occurrence
@@ -41,14 +42,14 @@ points(absences, col = "red", pch = 8)
 path <- system.file("external", package="sdm")    # Explain what is the folder where R can find the predictors
 path 
 
-# list the predictors
+# List the predictors
 lst <- list.files(path=path, pattern='asc$', full.names = T)      # asc (extension) 
 lst
 
 # Use the stack function to aggregate the 4 files in lst
 preds <- stack(lst)
 
-# plot the predictors
+# Plot the predictors
 cl <- colorRampPalette(c('blue','orange','red','yellow')) (100)
 plot(preds, col=cl)
 preds
@@ -73,9 +74,3 @@ points(species[species$Occurrence == 1,], pch=16)
 # Add to the stack
 s1 <- stack(preds,p1)
 plot(s1, col=cl)
-
-
-
-
-
-
